@@ -71,3 +71,15 @@ console.log("\nContact Count:", myAddressBook.getContactCount());
 
 console.log("\nSearching in Los Angeles:", myAddressBook.searchByCity("Los Angeles"));
 console.log("\nPersons by State:", myAddressBook.viewPersonsByState());
+
+console.log("\n Sorting by Name:");
+myAddressBook.sortContactsByName();
+
+console.log("\n Sorting by City:");
+myAddressBook.sortContactsByCity();
+
+console.log("\n Sorting by State:");
+myAddressBook.sortContactsByState();
+
+console.log("\n Sorting by Zip:");
+myAddressBook.sortContactsByZip();

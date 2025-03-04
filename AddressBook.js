@@ -109,6 +109,24 @@ class AddressBook {
         console.log("Contacts sorted alphabetically:");
         this.displayContacts();
     }
+
+    sortContactsByCity() {
+        this.contacts.sort((a, b) => a.city.localeCompare(b.city));
+        console.log("Contacts sorted by City:");
+        this.displayContacts();
+    }
+
+    sortContactsByState() {
+        this.contacts.sort((a, b) => a.state.localeCompare(b.state));
+        console.log("Contacts sorted by State:");
+        this.displayContacts();
+    }
+
+    sortContactsByZip() {
+        this.contacts.sort((a, b) => a.zip.localeCompare(b.zip));
+        console.log("Contacts sorted by Zip:");
+        this.displayContacts();
+    }
 }
 
 export default AddressBook;
