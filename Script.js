@@ -48,3 +48,15 @@ console.log(myAddressBook.searchByCity("Somewhere"));
 
 console.log("People in CAGV:");
 console.log(myAddressBook.searchByState("CAGV"));
+
+myAddressBook.createContact("John", "Doe", "123 Main St", "Los Angeles", "CADS", "90018", "555-6388", "john.doe@example.com");
+myAddressBook.createContact("Jane", "Smith", "456 Oak St", "Dallas", "TXCV", "75001", "555-6745", "jane.smith@example.com");
+myAddressBook.createContact("Emily", "Clark", "789 Pine St", "Los Angeles", "CAGD", "90025", "555-7890", "emily.clark@example.com");
+myAddressBook.createContact("Michael", "Brown", "987 Elm St", "Austin", "TXCV", "73301", "555-4321", "michael.brown@example.com");
+
+//All city and person
+console.log("View Persons by City:");
+console.log(myAddressBook.viewPersonsByCity());
+
+console.log("View Persons by State:");
+console.log(myAddressBook.viewPersonsByState());

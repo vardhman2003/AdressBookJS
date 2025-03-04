@@ -79,6 +79,26 @@ class AddressBook {
         return this.contacts.filter(contact => contact.state === state)
             .map(contact => contact.getContactInfo());
     }
+
+    viewPersonsByCity() {
+        return this.contacts.reduce((groupedByCity, contact) => {
+            if (!groupedByCity[contact.city]) {
+                groupedByCity[contact.city] = [];
+            }
+            groupedByCity[contact.city].push(contact.getFullName());
+            return groupedByCity;
+        }, {});
+    }
+
+    viewPersonsByState() {
+        return this.contacts.reduce((groupedByState, contact) => {
+            if (!groupedByState[contact.state]) {
+                groupedByState[contact.state] = [];
+            }
+            groupedByState[contact.state].push(contact.getFullName());
+            return groupedByState;
+        }, {});
+    }
 }
 
 export default AddressBook;
