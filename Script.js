@@ -38,3 +38,13 @@ myAddressBook.createContact("John", "Doe", "789 Elm St", "Elsewhere", "NY", "100
 
 myAddressBook.displayContacts();
 console.log(`Total Contacts: ${myAddressBook.getContactCount()}`);
+
+myAddressBook.createContact("John", "Doe", "123 Main St", "Los Angeles", "CA", "90018", "555-6388", "john.doe@example.com");
+myAddressBook.createContact("Jane", "Smith", "456 Oak St", "Dallas", "TX", "75001", "555-6745", "jane.smith@example.com");
+myAddressBook.createContact("Emily", "Clark", "789 Pine St", "Los Angeles", "CA", "90025", "555-7890", "emily.clark@example.com");
+
+console.log("People in Somewhere:");
+console.log(myAddressBook.searchByCity("Somewhere"));
+
+console.log("People in CAGV:");
+console.log(myAddressBook.searchByState("CAGV"));

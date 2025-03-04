@@ -69,6 +69,16 @@ class AddressBook {
     getContactCount() {
         return this.contacts.reduce(count => count + 1, 0);
     }
+
+    searchByCity(city) {
+        return this.contacts.filter(contact => contact.city === city)
+            .map(contact => contact.getContactInfo());
+    }
+
+    searchByState(state) {
+        return this.contacts.filter(contact => contact.state === state)
+            .map(contact => contact.getContactInfo());
+    }
 }
 
 export default AddressBook;
