@@ -6,7 +6,16 @@ class AddressBook {
     }
 
     addContact(contact) {
-        this.contacts.push(contact);
+        let isDuplicate = this.contacts.some(existingContact => 
+            existingContact.firstName === contact.firstName && existingContact.lastName === contact.lastName
+        );
+
+        if (isDuplicate) {
+            console.log(`Duplicate entry found: ${contact.getFullName()} already exists.`);
+        } else {
+            this.contacts.push(contact);
+            console.log(`Contact added: ${contact.getFullName()}`);
+        }
     }
 
     displayContacts() {
@@ -23,7 +32,6 @@ class AddressBook {
         try {
             let contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
             this.addContact(contact);
-            console.log(`Contact added: ${contact.getFullName()}`);
         } catch (error) {
             console.error("Error adding contact:", error.message);
         }
@@ -46,11 +54,12 @@ class AddressBook {
     }
 
     deleteContact(firstName, lastName) {
-        let index = this.contacts.findIndex(contact => 
-            contact.firstName === firstName && contact.lastName === lastName
+        let initialLength = this.contacts.length;
+        this.contacts = this.contacts.filter(contact => 
+            !(contact.firstName === firstName && contact.lastName === lastName)
         );
-        if (index !== -1) {
-            this.contacts.splice(index, 1);
+
+        if (this.contacts.length < initialLength) {
             console.log(`Contact deleted: ${firstName} ${lastName}`);
         } else {
             console.log("Contact not found.");
