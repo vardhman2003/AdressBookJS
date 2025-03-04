@@ -7,7 +7,7 @@ class AddressBook {
 
     addContact(contact) {
         let isDuplicate = this.contacts.some(existingContact => 
-            existingContact.firstName === contact.firstName && existingContact.lastName === contact.lastName
+            existingContact.getFullName().toLowerCase() === contact.getFullName().toLowerCase()
         );
 
         if (isDuplicate) {
@@ -22,9 +22,7 @@ class AddressBook {
         if (this.contacts.length === 0) {
             console.log("No contacts found.");
         } else {
-            this.contacts.forEach(contact => {
-                console.log(contact.getContactInfo());
-            });
+            this.contacts.forEach(contact => console.log(contact.toString()));
         }
     }
 
@@ -39,7 +37,8 @@ class AddressBook {
 
     findContact(firstName, lastName) {
         return this.contacts.find(contact => 
-            contact.firstName === firstName && contact.lastName === lastName
+            contact.firstName.toLowerCase() === firstName.toLowerCase() && 
+            contact.lastName.toLowerCase() === lastName.toLowerCase()
         );
     }
 
@@ -56,7 +55,8 @@ class AddressBook {
     deleteContact(firstName, lastName) {
         let initialLength = this.contacts.length;
         this.contacts = this.contacts.filter(contact => 
-            !(contact.firstName === firstName && contact.lastName === lastName)
+            !(contact.firstName.toLowerCase() === firstName.toLowerCase() && 
+              contact.lastName.toLowerCase() === lastName.toLowerCase())
         );
 
         if (this.contacts.length < initialLength) {
@@ -71,33 +71,43 @@ class AddressBook {
     }
 
     searchByCity(city) {
-        return this.contacts.filter(contact => contact.city === city)
-            .map(contact => contact.getContactInfo());
+        return this.contacts
+            .filter(contact => contact.city.toLowerCase() === city.toLowerCase())
+            .map(contact => contact.toString());
     }
 
     searchByState(state) {
-        return this.contacts.filter(contact => contact.state === state)
-            .map(contact => contact.getContactInfo());
+        return this.contacts
+            .filter(contact => contact.state.toLowerCase() === state.toLowerCase())
+            .map(contact => contact.toString());
     }
 
     viewPersonsByCity() {
         return this.contacts.reduce((groupedByCity, contact) => {
-            if (!groupedByCity[contact.city]) {
-                groupedByCity[contact.city] = [];
+            let cityKey = contact.city.toLowerCase();
+            if (!groupedByCity[cityKey]) {
+                groupedByCity[cityKey] = [];
             }
-            groupedByCity[contact.city].push(contact.getFullName());
+            groupedByCity[cityKey].push(contact.getFullName());
             return groupedByCity;
         }, {});
     }
 
     viewPersonsByState() {
         return this.contacts.reduce((groupedByState, contact) => {
-            if (!groupedByState[contact.state]) {
-                groupedByState[contact.state] = [];
+            let stateKey = contact.state.toLowerCase();
+            if (!groupedByState[stateKey]) {
+                groupedByState[stateKey] = [];
             }
-            groupedByState[contact.state].push(contact.getFullName());
+            groupedByState[stateKey].push(contact.getFullName());
             return groupedByState;
         }, {});
+    }
+
+    sortContactsByName() {
+        this.contacts.sort((a, b) => a.getFullName().localeCompare(b.getFullName()));
+        console.log("Contacts sorted alphabetically:");
+        this.displayContacts();
     }
 }
 

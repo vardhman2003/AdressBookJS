@@ -60,3 +60,14 @@ console.log(myAddressBook.viewPersonsByCity());
 
 console.log("View Persons by State:");
 console.log(myAddressBook.viewPersonsByState());
+
+console.log("\nBefore Sorting:");
+myAddressBook.displayContacts();
+
+console.log("\nAfter Sorting:");
+myAddressBook.sortContactsByName();
+
+console.log("\nContact Count:", myAddressBook.getContactCount());
+
+console.log("\nSearching in Los Angeles:", myAddressBook.searchByCity("Los Angeles"));
+console.log("\nPersons by State:", myAddressBook.viewPersonsByState());
