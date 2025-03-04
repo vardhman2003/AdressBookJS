@@ -44,6 +44,18 @@ class AddressBook {
             console.log("Contact not found.");
         }
     }
+
+    deleteContact(firstName, lastName) {
+        let index = this.contacts.findIndex(contact => 
+            contact.firstName === firstName && contact.lastName === lastName
+        );
+        if (index !== -1) {
+            this.contacts.splice(index, 1);
+            console.log(`Contact deleted: ${firstName} ${lastName}`);
+        } else {
+            console.log("Contact not found.");
+        }
+    }
 }
 
 export default AddressBook;
